@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        body { 
+            padding: 20px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .result-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .table {
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        .table th {
+            background-color: #f8f9fa;
+            text-align: center;
+            font-weight: 600;
+        }
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .explanation {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .explanation h2 {
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+        .explanation-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .explanation-section:last-child {
+            border-bottom: none;
+        }
+        .explanation-title {
+            font-weight: 600;
+            color: #0d6efd;
+            margin-bottom: 0.5rem;
+        }
+        .row-explanation {
+            margin-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .math-expression {
+            font-family: 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        .true-value {
+            color: #198754;
+            font-weight: 600;
+        }
+        .false-value {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        @media print {
+            body {
+                padding: 0;
+                background-color: white;
+            }
+            .result-container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none;
+            }
+            .table {
+                border: 1px solid #dee2e6;
+            }
+            .explanation {
+                background-color: white;
+                border: 1px solid #dee2e6;
+            }
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 2rem;
+        }
+        .table th {
+            background-color: #f8f9fa;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0d6efd;
+        }
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1.1rem;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 1.5rem 0;
+            border-top: 1px solid #dee2e6;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .footer a {
+            color: #6c757d;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        .footer a:hover {
+            color: #0d6efd;
+        }
+        .footer-text {
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="h4 text-center mb-0">Generador de Tablas de Verdad</h1>
+        </div>
+    </header>
+
+    <div class="result-container">
+        <h1 class="h3 mb-4">GitHub</h1>
+        
+        <div class="mb-3">
+            <strong>Expresión:</strong> 
+            <span class="math-expression">(P∧Q)∨¬Q</span>
+        </div>
+        
+        <div class="mb-3">
+            <strong>Variables:</strong> P, Q
+        </div>
+        
+        <div class="table-responsive">
+            <table border="1" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>P</th>
+      <th>Q</th>
+      <th>Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>V</td>
+      <td>V</td>
+      <td>V</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>V</td>
+      <td>F</td>
+      <td>V</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>F</td>
+      <td>V</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>F</td>
+      <td>F</td>
+      <td>V</td>
+    </tr>
+  </tbody>
+</table>
+        </div>
+        
+        <div class="explanation">
+            <h2 class="h5">Explicación Detallada</h2>
+            
+                
+                    <div class="explanation-section">
+                        <div class="explanation-title">1. Análisis de la Expresión</div>
+                
+            
+                
+            
+                
+                    <p>- Las variables P y Q representan proposiciones lógicas que pueden ser verdaderas (V) o falsas (F). Estas son las entradas básicas para la expresión dada.</p>
+                
+            
+                
+            
+                
+                    <p>- Los operadores utilizados son:</p>
+                
+            
+                
+                    <p>∧ (AND): El resultado es V solo si ambas proposiciones son V.</p>
+                
+            
+                
+                    <p>∨ (OR): El resultado es V si al menos una de las proposiciones es V.</p>
+                
+            
+                
+                    <p>¬ (NOT): Invierte el valor de verdad de la proposición; si es V, se convierte en F, y viceversa.</p>
+                
+            
+                
+            
+                
+                    <p>- La expresión (P∧Q)∨¬Q se puede descomponer en dos subexpresiones:</p>
+                
+            
+                
+                    <div class="explanation-section">
+                        <div class="explanation-title">1. P∧Q: Verifica si ambas proposiciones, P y Q, son verdaderas.</div>
+                
+            
+                
+                    <div class="explanation-section">
+                        <div class="explanation-title">2. ¬Q: Invierte el valor de verdad de Q.</div>
+                
+            
+                
+                    <p>Luego, estas dos subexpresiones se combinan con el operador ∨, significando que el resultado será verdadero si al menos una de las subexpresiones es verdadera.</p>
+                
+            
+                
+            
+                
+                    <div class="explanation-section">
+                        <div class="explanation-title">2. Evaluación por Filas</div>
+                
+            
+                
+            
+                
+                    <div class="row-explanation">Fila 0:</div>
+                
+            
+                
+                    <p>- P = V, Q = V</p>
+                
+            
+                
+                    <p>- P∧Q = V, ya que ambas son verdaderas.</p>
+                
+            
+                
+                    <p>- ¬Q = F, porque Q es verdadera.</p>
+                
+            
+                
+                    <p>- (P∧Q)∨¬Q = V∨F = V. El resultado es verdadero porque la primera subexpresión es verdadera.</p>
+                
+            
+                
+            
+                
+                    <div class="row-explanation">Fila 1:</div>
+                
+            
+                
+                    <p>- P = V, Q = F</p>
+                
+            
+                
+                    <p>- P∧Q = F, ya que Q es falsa, lo que hace que la conjunción sea falsa.</p>
+                
+            
+                
+                    <p>- ¬Q = V, ya que la negación de Q (falsa) es verdadera.</p>
+                
+            
+                
+                    <p>- (P∧Q)∨¬Q = F∨V = V. El resultado es verdadero porque la segunda subexpresión es verdadera.</p>
+                
+            
+                
+            
+                
+                    <div class="row-explanation">Fila 2:</div>
+                
+            
+                
+                    <p>- P = F, Q = V</p>
+                
+            
+                
+                    <p>- P∧Q = F, ya que P es falsa, lo que hace que la conjunción sea falsa.</p>
+                
+            
+                
+                    <p>- ¬Q = F, porque Q es verdadera.</p>
+                
+            
+                
+                    <p>- (P∧Q)∨¬Q = F∨F = F. El resultado es falso porque ambas subexpresiones son falsas.</p>
+                
+            
+                
+            
+                
+                    <div class="row-explanation">Fila 3:</div>
+                
+            
+                
+                    <p>- P = F, Q = F</p>
+                
+            
+                
+                    <p>- P∧Q = F, ya que ambos son falsos.</p>
+                
+            
+                
+                    <p>- ¬Q = V, ya que la negación de Q (falsa) es verdadera.</p>
+                
+            
+                
+                    <p>- (P∧Q)∨¬Q = F∨V = V. El resultado es verdadero porque la segunda subexpresión es verdadera.</p>
+                
+            
+                
+            
+                
+                    <div class="explanation-section">
+                        <div class="explanation-title">3. Conclusiones</div>
+                
+            
+                
+            
+                
+                    <p>- Un patrón observado es que el resultado es verdadero en todos los casos excepto cuando Q es verdadero y P es falso. Esto indica que la presencia de ¬Q en la expresión tiende a producir un resultado verdadero a menos que Q sea verdadero, pero P no lo sea.</p>
+                
+            
+                
+            
+                
+                    <p>- Un caso particular importante es cuando Q es falso; en estas situaciones, independientemente del valor de P, el resultado siempre es verdadero debido a la subexpresión ¬Q.</p>
+                
+            
+                
+            
+                
+                    <p>- Una equivalencia lógica relevante es que esta expresión muestra cómo la negación puede influir significativamente en el resultado de una expresión compuesta, especialmente en combinación con otras operaciones lógicas como AND y OR. La presencia de ¬Q actúa como una &#34;seguridad&#34; que garantiza un resultado verdadero cuando Q es falso, independientemente del valor de P.</p>
+                
+            
+        </div>
+        
+        <div class="mt-4 text-muted">
+            Generado el: 05/11/2024 11:03:51
+        </div>
+        
+        <div class="action-buttons no-print">
+            <a href="/" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Nueva Tabla
+            </a>
+            <button onclick="window.print()" class="btn btn-success">
+                <i class="bi bi-printer"></i> Imprimir
+            </button>
+            <button onclick="downloadTXT()" class="btn btn-info">
+                <i class="bi bi-download"></i> Descargar TXT
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">Recursos educativos desarrollados por</p>
+            <div class="footer-links">
+                <a href="https://www.686f6c61.dev/" target="_blank" title="686f6c61">
+                    <i class="bi bi-globe"></i> 686f6c61.dev
+                </a>
+                <a href="https://github.com/686f6c61" target="_blank" title="GitHub">
+                    <i class="bi bi-github"></i> GitHub
+                </a>
+            </div>
+            <p class="footer-text mt-2">
+                <small>© 2024 Todos los derechos reservados</small>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Dar formato a la tabla
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dar formato a los valores V/F
+            document.querySelectorAll('td').forEach(td => {
+                if (td.textContent.trim() === 'V') {
+                    td.classList.add('true-value');
+                } else if (td.textContent.trim() === 'F') {
+                    td.classList.add('false-value');
+                }
+            });
+        });
+
+        // Función para descargar en TXT
+        function downloadTXT() {
+            const title = document.querySelector('h1').innerText;
+            const expression = document.querySelector('.math-expression').innerText;
+            const variables = document.querySelector('.mb-3:nth-child(3)').innerText;
+            const table = document.querySelector('.table-responsive').innerText;
+            const explanation = document.querySelector('.explanation').innerText;
+            const timestamp = document.querySelector('.text-muted').innerText;
+            
+            const content = `${title}\n\n` +
+                           `Expresión: ${expression}\n` +
+                           `${variables}\n\n` +
+                           `TABLA DE VERDAD:\n${table}\n\n` +
+                           `EXPLICACIÓN DETALLADA:\n${explanation}\n\n` +
+                           `${timestamp}`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html> 

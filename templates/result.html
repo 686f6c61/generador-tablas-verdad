@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        body { 
+            padding: 20px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .result-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .table {
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        .table th {
+            background-color: #f8f9fa;
+            text-align: center;
+            font-weight: 600;
+        }
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .explanation {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .explanation h2 {
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+        .explanation-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .explanation-section:last-child {
+            border-bottom: none;
+        }
+        .explanation-title {
+            font-weight: 600;
+            color: #0d6efd;
+            margin-bottom: 0.5rem;
+        }
+        .row-explanation {
+            margin-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .math-expression {
+            font-family: 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        .true-value {
+            color: #198754;
+            font-weight: 600;
+        }
+        .false-value {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        @media print {
+            body {
+                padding: 0;
+                background-color: white;
+            }
+            .result-container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none;
+            }
+            .table {
+                border: 1px solid #dee2e6;
+            }
+            .explanation {
+                background-color: white;
+                border: 1px solid #dee2e6;
+            }
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 2rem;
+        }
+        .table th {
+            background-color: #f8f9fa;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0d6efd;
+        }
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1.1rem;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 1.5rem 0;
+            border-top: 1px solid #dee2e6;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .footer a {
+            color: #6c757d;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        .footer a:hover {
+            color: #0d6efd;
+        }
+        .footer-text {
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="h4 text-center mb-0">Generador de Tablas de Verdad</h1>
+        </div>
+    </header>
+
+    <div class="result-container">
+        <h1 class="h3 mb-4">{{ title }}</h1>
+        
+        <div class="mb-3">
+            <strong>Expresión:</strong> 
+            <span class="math-expression">{{ expression }}</span>
+        </div>
+        
+        <div class="mb-3">
+            <strong>Variables:</strong> {{ variables }}
+        </div>
+        
+        <div class="table-responsive">
+            {{ table | safe }}
+        </div>
+        
+        <div class="explanation">
+            <h2 class="h5">Explicación Detallada</h2>
+            {% for line in explanation.split('\n') %}
+                {% if line.strip().startswith('1.') or line.strip().startswith('2.') or line.strip().startswith('3.') %}
+                    <div class="explanation-section">
+                        <div class="explanation-title">{{ line.strip() }}</div>
+                {% elif line.strip().startswith('Fila') %}
+                    <div class="row-explanation">{{ line.strip() }}</div>
+                {% elif line.strip() %}
+                    <p>{{ line.strip() }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        <div class="mt-4 text-muted">
+            Generado el: {{ timestamp }}
+        </div>
+        
+        <div class="action-buttons no-print">
+            <a href="/" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Nueva Tabla
+            </a>
+            <button onclick="window.print()" class="btn btn-success">
+                <i class="bi bi-printer"></i> Imprimir
+            </button>
+            <button onclick="downloadTXT()" class="btn btn-info">
+                <i class="bi bi-download"></i> Descargar TXT
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">Recursos educativos desarrollados por</p>
+            <div class="footer-links">
+                <a href="https://www.686f6c61.dev/" target="_blank" title="686f6c61">
+                    <i class="bi bi-globe"></i> 686f6c61.dev
+                </a>
+                <a href="https://github.com/686f6c61" target="_blank" title="GitHub">
+                    <i class="bi bi-github"></i> GitHub
+                </a>
+            </div>
+            <p class="footer-text mt-2">
+                <small>© 2024 Todos los derechos reservados</small>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Dar formato a la tabla
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dar formato a los valores V/F
+            document.querySelectorAll('td').forEach(td => {
+                if (td.textContent.trim() === 'V') {
+                    td.classList.add('true-value');
+                } else if (td.textContent.trim() === 'F') {
+                    td.classList.add('false-value');
+                }
+            });
+        });
+
+        // Función para descargar en TXT
+        function downloadTXT() {
+            const title = document.querySelector('h1').innerText;
+            const expression = document.querySelector('.math-expression').innerText;
+            const variables = document.querySelector('.mb-3:nth-child(3)').innerText;
+            const table = document.querySelector('.table-responsive').innerText;
+            const explanation = document.querySelector('.explanation').innerText;
+            const timestamp = document.querySelector('.text-muted').innerText;
+            
+            const content = `${title}\n\n` +
+                           `Expresión: ${expression}\n` +
+                           `${variables}\n\n` +
+                           `TABLA DE VERDAD:\n${table}\n\n` +
+                           `EXPLICACIÓN DETALLADA:\n${explanation}\n\n` +
+                           `${timestamp}`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html> 
