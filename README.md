@@ -2,6 +2,8 @@
 
 Un generador de tablas de verdad interactivo con explicaciones detalladas generadas por GPT-4 Turbo. Esta herramienta educativa permite crear, visualizar y entender tablas de verdad para expresiones lógicas.
 
+![Interfaz del Generador de Tablas de Verdad](/img/tablas-verdad.png)
+
 ## 🌟 Características
 
 - Interfaz web intuitiva para construir expresiones lógicas
@@ -89,6 +91,9 @@ generador-tablas-verdad/
 │   ├── __init__.py
 │   ├── table_generator.py  # Generador de tablas
 │   └── gpt_explainer.py   # Integración con GPT-4
+├── img/
+│   ├── tablas-verdad.png        # Captura de la interfaz principal
+│   └── tabla-verdad-resultados.png  # Captura de los resultados
 └── results/             # Resultados generados (no incluido en git)
 ```
 
@@ -116,6 +121,8 @@ generador-tablas-verdad/
    - Formato HTML con estilos
    - Versión TXT plana
    - Impresión optimizada
+
+![Resultados y Explicación](/img/tabla-verdad-resultados.png)
 
 ## 🤝 Contribuir
 
